@@ -40,11 +40,10 @@
         }
         .divider {
             position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            top: calc(100% - 4px); /* Placed at the bottom of the header, minus the border thickness */
-            border-top: 3px solid #FFFFFF; /* A thicker divider for visibility */
-            width: 90%; /* Adjust width to your preference */
+            left: 0;
+            right: 0;
+            top: 100%; /* Position it right below the header text */
+            border-top: 3px solid #FFFFFF; /* Thicker white line for the divider */
             z-index: 1;
         }
         .footer {
