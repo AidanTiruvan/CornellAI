@@ -67,19 +67,26 @@
     </div>
 
     <!-- Voiceflow Chatbot Script -->
-    <script type="text/javascript">
-      (function(d, t) {
-          var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
-          v.onload = function() {
-            window.voiceflow.chat.load({
-              verify: { projectID: '6608dc5f14ac40171329936c' },
-              url: 'https://general-runtime.voiceflow.com',
-              versionID: 'production',
-              container: document.getElementById('voiceflow-chat-container')
-            });
-          }
-          v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
-      })(document, 'script');
-    </script>
-</body>
-</html>
+<script type="text/javascript">
+  (function(d, t) {
+    var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+    v.onload = function() {
+      window.voiceflow.chat.load({
+        verify: { projectID: '6608dc5f14ac40171329936c' },
+        url: 'https://general-runtime.voiceflow.com',
+        versionID: 'production',
+        container: document.getElementById('voiceflow-chat-container')
+      });
+
+      // Wait for the chat to finish loading, then simulate a click
+      setTimeout(function() {
+        var chatLauncher = document.querySelector('.vfrc-widget--launcher'); // This selector might need to be updated
+        if (chatLauncher) {
+          chatLauncher.click(); // Simulate a click on the launcher to open the chat
+        }
+      }, 1000); // Adjust the timeout as necessary
+    };
+    v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+  })(document, 'script');
+</script>
+
