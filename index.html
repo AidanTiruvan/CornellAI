@@ -4,7 +4,38 @@
     <meta charset="UTF-8">
     <title>Cornell Programming Assistant</title>
     <style>
-        /* Your existing styles */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #F4F4F4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .chat-container {
+            background-color: #FFFFFF;
+            border: 2px solid #B31B1B; /* Cornell Red */
+            border-radius: 8px;
+            width: 350px;
+            height: 500px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Aligns header and footer at ends and chat in center */
+        }
+        .header, .footer {
+            background-color: #B31B1B; /* Cornell Red */
+            color: #FFFFFF;
+            padding: 10px;
+            text-align: center;
+        }
+        #voiceflow-chat-container {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     </style>
 </head>
 <body>
@@ -23,33 +54,18 @@
     </div>
 
     <!-- Voiceflow Chatbot Script -->
-    <script type="text/javascript">
-      (function(d, t) {
-        var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
-
-        // Snippet to reposition the chat widget
-        var interval = setInterval(function () {
-            var chatDiv = d.getElementById('voiceflow-chat');
-            if (chatDiv) {
-                clearInterval(interval);
-                var parentDiv = d.getElementsByClassName("inner")[0]; // Update class "inner" as necessary
-                var targetDiv = d.getElementById('contact'); // Update ID 'contact' as necessary
-                parentDiv.insertBefore(chatDiv, targetDiv);
-                // Or use this if you want to append to the targetDiv: targetDiv.appendChild(chatDiv);
-            }
-        }, 100);
-
-        v.onload = function() {
-          window.voiceflow.chat.load({
-            verify: { projectID: '6608dc5f14ac40171329936c' },
-            url: 'https://general-runtime.voiceflow.com',
-            versionID: 'production',
-            container: document.getElementById('voiceflow-chat-container')
-          });
-        };
-
-        v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
-      })(document, 'script');
-    </script>
+<script type="text/javascript">
+  (function(d, t) {
+      var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+      v.onload = function() {
+        window.voiceflow.chat.load({
+          verify: { projectID: '6608dc5f14ac40171329936c' },
+          url: 'https://general-runtime.voiceflow.com',
+          versionID: 'production'
+        });
+      }
+      v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+  })(document, 'script');
+</script>
 </body>
 </html>
