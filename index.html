@@ -40,11 +40,12 @@
         }
         .divider {
             position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            bottom: 0;
-            border-top: 1px solid #FFFFFF; /* White line for the divider */
-            width: 80%; /* Width of the divider */
+            left: 0;
+            right: 0;
+            top: 50%; /* Adjust this value if you want to move the divider up or down */
+            transform: translateY(-50%); /* Center the divider vertically */
+            border-top: 3px solid #FFFFFF; /* Thicker white line for the divider */
+            z-index: 1;
         }
         .footer {
             background-color: #B31B1B; /* Cornell Red */
