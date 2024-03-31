@@ -30,12 +30,21 @@
         .header {
             background-color: #B31B1B; /* Cornell Red */
             color: #FFFFFF;
-            padding: 10px;
+            padding: 20px; /* Increased padding */
             text-align: center;
             font-family: 'Montserrat', sans-serif; /* Montserrat font */
             font-size: 2em; /* Larger font size */
             font-weight: 700; /* Extra boldness */
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for depth */
+            position: relative; /* Added for the divider */
+        }
+        .divider {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0;
+            border-top: 1px solid #FFFFFF; /* White line for the divider */
+            width: 80%; /* Width of the divider */
         }
         .footer {
             background-color: #B31B1B; /* Cornell Red */
@@ -59,6 +68,7 @@
 <body>
     <div class="chat-container">
         <div class="header">
+            <div class="divider"></div> <!-- Visual divider element -->
             Cornell Programming Assistant
         </div>
         <div id="voiceflow-chat-container">
