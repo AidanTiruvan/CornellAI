@@ -4,15 +4,14 @@
     <meta charset="UTF-8">
     <title>Cornell Programming Assistant</title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
+        html, body {
+            height: 100%;
             margin: 0;
             padding: 0;
             background-color: #F4F4F4;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
         }
         .chat-container {
             background-color: #FFFFFF;
@@ -23,28 +22,19 @@
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             display: flex;
             flex-direction: column;
-            overflow: hidden;
+            justify-content: space-between; /* Aligns header and footer at ends and chat in center */
         }
-        .header {
+        .header, .footer {
             background-color: #B31B1B; /* Cornell Red */
             color: #FFFFFF;
             padding: 10px;
             text-align: center;
         }
-        .footer {
-            margin-top: auto;
-            background-color: #B31B1B; /* Cornell Red */
-            color: #FFFFFF;
-            padding: 10px;
-            text-align: center;
-        }
-        /* Placeholder for Voiceflow widget */
-        .voiceflow-widget-placeholder {
+        #voiceflow-chat-container {
             flex-grow: 1;
             display: flex;
-            justify-content: center;
             align-items: center;
-            background-color: #e5e5e5; /* A light grey background */
+            justify-content: center;
         }
     </style>
 </head>
@@ -53,9 +43,8 @@
         <div class="header">
             Cornell Programming Assistant
         </div>
-        <div class="voiceflow-widget-placeholder">
+        <div id="voiceflow-chat-container">
             <!-- Voiceflow widget will load here -->
-            Chatbot interface will appear here
         </div>
         <div class="footer">
             <a href="#" style="color: white; text-decoration: none;">About</a> |
@@ -72,7 +61,8 @@
             window.voiceflow.chat.load({
               verify: { projectID: '6608dc5f14ac40171329936c' },
               url: 'https://general-runtime.voiceflow.com',
-              versionID: 'production'
+              versionID: 'production',
+              container: document.getElementById('voiceflow-chat-container')
             });
           }
           v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
