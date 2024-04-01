@@ -15,93 +15,72 @@
             justify-content: center;
             align-items: center;
         }
-        .chat-container {
-            background-color: #FFFFFF;
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Divide the screen into two columns */
+            gap: 10px; /* Add some space between the two panels */
+            height: 100vh;
+            max-height: 500px; /* Set a maximum height */
+            width: 100vw;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .chat-container, .code-editor-container {
             border: 2px solid #B31B1B; /* Cornell Red */
             border-radius: 8px;
-            width: auto; /* Let the width be determined by its content */
-            max-width: 800px; /* Set a reasonable maximum width */
-            height: 500px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between; /* Keep header and footer at ends */
             overflow: hidden; /* Hide overflow */
         }
-        .header {
+        .header, .footer {
             background-color: #B31B1B; /* Cornell Red */
             color: #FFFFFF;
-            padding: 20px; /* Increased padding */
+            padding: 20px;
             text-align: center;
-            font-family: 'Montserrat', sans-serif; /* Montserrat font */
-            font-size: 2em; /* Larger font size */
-            font-weight: 700; /* Extra boldness */
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for depth */
-            position: relative; /* Added for the divider */
-        }
-        .divider {
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: 100%; /* Position it right below the header text */
-            border-top: 3px solid #FFFFFF; /* Thicker white line for the divider */
-            z-index: 1;
-        }
-        .footer {
-            background-color: #B31B1B; /* Cornell Red */
-            color: #FFFFFF;
-            padding: 10px;
-            text-align: center;
-            font-family: 'Montserrat', sans-serif; /* Same font as the header */
-            font-size: 1em; /* Keeps the default sizing */
-            font-weight: 700; /* Extra boldness */
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5em;
+            font-weight: 700;
         }
         #voiceflow-chat-container {
             flex-grow: 1;
-            width: 90%; /* Adjust the width as needed */
-            max-width: 800px; /* Set a max-width to prevent it from becoming too wide on large screens */
-            overflow-y: auto; /* Adds a vertical scrollbar if the content overflows */
-            overflow-x: hidden; /* Hides the horizontal scrollbar */
-            margin: 0 auto; /* Centers the container */
+            overflow-y: auto;
         }
-        .chat-container {
-            /* Mobile styles for chat container */
+        .code-editor-container {
+            display: flex;
+            flex-direction: column;
         }
-        .header, .footer {
-            /* Mobile styles for header and footer */
+        .code-editor {
+            flex-grow: 1;
+            padding: 10px;
         }
-
-        /* Responsive styles for tablets and up */
-        @media (min-width: 768px) {
-            .chat-container {
-                /* Adjusted styles for larger screens */
-            }
-            .header, .footer {
-                /* Adjusted styles for larger screens */
-            }
-            /* ... Other styles as needed ... */
-        }
-
-        /* Responsive styles for desktops and up */
-        @media (min-width: 1024px) {
-            .chat-container {
-                /* Adjusted styles for larger desktop screens */
-            }
-            /* ... Other styles as needed ... */
+        textarea {
+            width: 100%;
+            height: 100%;
+            border: none;
+            padding: 10px;
+            box-sizing: border-box;
+            font-family: monospace;
         }
     </style>
 </head>
 <body>
-    <div class="chat-container">
-        <div class="header">
-            <div class="divider"></div> <!-- Visual divider element -->
-            Cornell CS1110 Assistant
+    <div class="container">
+        <div class="chat-container">
+            <div class="header">
+                Cornell CS1110 Assistant
+            </div>
+            <div id="voiceflow-chat-container">
+                <!-- Voiceflow widget will load here -->
+            </div>
+            <div class="footer">
+                Created by Aidan Tiruvan for CS1110
+            </div>
         </div>
-        <div id="voiceflow-chat-container">
-            <!-- Voiceflow widget will load here -->
-        </div>
-        <div class="footer">
-            Created by Aidan Tiruvan for CS1110
+        <div class="code-editor-container">
+            <div class="header">
+                Python Code Editor
+            </div>
+            <textarea class="code-editor"></textarea>
+            <div class="footer">
+                Execute Code
+            </div>
         </div>
     </div>
 
