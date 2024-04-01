@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Viewport meta tag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cornell CS1110 Assistant</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <style>
@@ -12,90 +12,79 @@
             padding: 0;
             background-color: #F4F4F4;
             display: flex;
+            justify-content: space-between; /* Aligns children with space between */
+            align-items: center;
+        }
+        .new-panel {
+            width: 30%;
+            background-color: #fff;
+            height: 500px;
+            border: 2px solid #B31B1B;
+            border-radius: 8px;
+            /* Add other styling as needed */
+            /* Placeholder for the new panel content alignment */
+            display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
+            padding: 1em;
         }
         .chat-container {
             background-color: #FFFFFF;
-            border: 2px solid #B31B1B; /* Cornell Red */
+            border: 2px solid #B31B1B;
             border-radius: 8px;
-            width: auto; /* Let the width be determined by its content */
-            max-width: 800px; /* Set a reasonable maximum width */
+            width: auto;
+            max-width: 600px; /* Adjusted width for right panel */
             height: 500px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            /* Remove margin-right to let the chat container use auto margin */
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Keep header and footer at ends */
-            overflow: hidden; /* Hide overflow */
+            justify-content: space-between;
+            overflow: hidden;
         }
-        .header {
-            background-color: #B31B1B; /* Cornell Red */
+        .header, .footer {
+            background-color: #B31B1B;
             color: #FFFFFF;
-            padding: 20px; /* Increased padding */
+            padding: 20px;
             text-align: center;
-            font-family: 'Montserrat', sans-serif; /* Montserrat font */
-            font-size: 2em; /* Larger font size */
-            font-weight: 700; /* Extra boldness */
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Text shadow for depth */
-            position: relative; /* Added for the divider */
-        }
-        .divider {
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: 100%; /* Position it right below the header text */
-            border-top: 3px solid #FFFFFF; /* Thicker white line for the divider */
-            z-index: 1;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2em;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
         .footer {
-            background-color: #B31B1B; /* Cornell Red */
-            color: #FFFFFF;
-            padding: 10px;
-            text-align: center;
-            font-family: 'Montserrat', sans-serif; /* Same font as the header */
-            font-size: 1em; /* Keeps the default sizing */
-            font-weight: 700; /* Extra boldness */
+            font-size: 1em;
         }
         #voiceflow-chat-container {
             flex-grow: 1;
-            width: 90%; /* Adjust the width as needed */
-            max-width: 800px; /* Set a max-width to prevent it from becoming too wide on large screens */
-            overflow-y: auto; /* Adds a vertical scrollbar if the content overflows */
-            overflow-x: hidden; /* Hides the horizontal scrollbar */
-            margin: 0 auto; /* Centers the container */
+            width: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
         }
-        .chat-container {
-            /* Mobile styles for chat container */
-        }
-        .header, .footer {
-            /* Mobile styles for header and footer */
-        }
-
-        /* Responsive styles for tablets and up */
-        @media (min-width: 768px) {
-            .chat-container {
-                /* Adjusted styles for larger screens */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
             }
-            .header, .footer {
-                /* Adjusted styles for larger screens */
+            .new-panel, .chat-container {
+                width: 90%;
+                margin: 10px;
+                max-width: none;
             }
-            /* ... Other styles as needed ... */
-        }
-
-        /* Responsive styles for desktops and up */
-        @media (min-width: 1024px) {
-            .chat-container {
-                /* Adjusted styles for larger desktop screens */
-            }
-            /* ... Other styles as needed ... */
         }
     </style>
 </head>
 <body>
+    <div class="new-panel">
+        <!-- New panel content goes here -->
+        <p>New panel content</p>
+    </div>
     <div class="chat-container">
         <div class="header">
-            <div class="divider"></div> <!-- Visual divider element -->
             Cornell CS1110 Assistant
+            <div class="divider"></div>
         </div>
         <div id="voiceflow-chat-container">
             <!-- Voiceflow widget will load here -->
@@ -104,25 +93,25 @@
             Created by Aidan Tiruvan for CS1110
         </div>
     </div>
-
-    <!-- Voiceflow Chatbot Script -->
     <script type="text/javascript">
-      (function(d, t) {
-          var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
-          v.onload = function() {
-            window.voiceflow.chat.load({
-              verify: { projectID: '6608dc5f14ac40171329936c' },
-              url: 'https://general-runtime.voiceflow.com',
-              versionID: 'production',
-              render: {
-                mode: 'embedded',
-                target: document.getElementById('voiceflow-chat-container')
-              },
-              autostart: false,
-            });
-          }
-          v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
-      })(document, 'script');
+        (function(d, t) {
+            var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+            v.onload = function() {
+                window.voiceflow.chat.load({
+                    verify: { projectID: '6608dc5f14ac40171329936c' },
+                    url: 'https://general-runtime.voiceflow.com',
+                    versionID: 'production',
+                    render: {
+                        mode: 'embedded',
+                        target: document.getElementById('voiceflow-chat-container')
+                    },
+                    autostart: false,
+                });
+            };
+            v.src = "https://cdn.voiceflow.com/widget/bundle.mjs";
+            v.type = "module";
+            s.parentNode.insertBefore(v, s);
+        })(document, 'script');
     </script>
 </body>
 </html>
