@@ -12,39 +12,25 @@
             padding: 0;
             background-color: #F4F4F4;
             display: flex;
-            justify-content: space-between; /* Aligns children with space between */
-            align-items: center;
+            justify-content: space-between; /* Distribute children evenly with space */
+            align-items: stretch; /* Stretch children vertically */
         }
-        .new-panel {
-            width: 30%;
-            background-color: #fff;
-            height: 500px;
-            border: 2px solid #B31B1B;
-            border-radius: 8px;
-            /* Add other styling as needed */
-            /* Placeholder for the new panel content alignment */
+        .panel {
+            flex: 1; /* Both panels will flexibly fill the space */
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 1em;
+            justify-content: space-between; /* Distribute space between header and footer */
+            margin: 0 10px; /* Space between panels */
         }
-        .chat-container {
+        .new-panel, .chat-container {
             background-color: #FFFFFF;
-            border: 2px solid #B31B1B;
+            border: 2px solid #B31B1B; /* Cornell Red */
             border-radius: 8px;
-            width: auto;
-            max-width: 600px; /* Adjusted width for right panel */
-            height: 500px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            /* Remove margin-right to let the chat container use auto margin */
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
             overflow: hidden;
         }
         .header, .footer {
-            background-color: #B31B1B;
+            background-color: #B31B1B; /* Cornell Red */
             color: #FFFFFF;
             padding: 20px;
             text-align: center;
@@ -54,37 +40,31 @@
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
         .footer {
-            font-size: 1em;
+            font-size: 1em; /* Adjust font size for footer */
         }
         #voiceflow-chat-container {
             flex-grow: 1;
-            width: 100%;
             overflow-y: auto;
-            overflow-x: hidden;
         }
         @media (max-width: 768px) {
-            body {
+            html, body {
                 flex-direction: column;
-                justify-content: center;
-                align-items: center;
             }
-            .new-panel, .chat-container {
-                width: 90%;
-                margin: 10px;
-                max-width: none;
+            .panel {
+                width: 100%;
+                margin: 10px 0; /* Space between panels when stacked */
             }
         }
     </style>
 </head>
 <body>
-    <div class="new-panel">
-        <!-- New panel content goes here -->
-        <p>New panel content</p>
+    <div class="new-panel panel">
+        <!-- Content for the new panel goes here -->
+        New panel content
     </div>
-    <div class="chat-container">
+    <div class="chat-container panel">
         <div class="header">
             Cornell CS1110 Assistant
-            <div class="divider"></div>
         </div>
         <div id="voiceflow-chat-container">
             <!-- Voiceflow widget will load here -->
@@ -93,25 +73,17 @@
             Created by Aidan Tiruvan for CS1110
         </div>
     </div>
-    <script type="text/javascript">
-        (function(d, t) {
-            var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
-            v.onload = function() {
-                window.voiceflow.chat.load({
-                    verify: { projectID: '6608dc5f14ac40171329936c' },
-                    url: 'https://general-runtime.voiceflow.com',
-                    versionID: 'production',
-                    render: {
-                        mode: 'embedded',
-                        target: document.getElementById('voiceflow-chat-container')
-                    },
-                    autostart: false,
-                });
-            };
-            v.src = "https://cdn.voiceflow.com/widget/bundle.mjs";
-            v.type = "module";
-            s.parentNode.insertBefore(v, s);
-        })(document, 'script');
+    <script type="module">
+        import { Chat } from 'https://cdn.voiceflow.com/widget/chat.mjs';
+        const chat = new Chat({
+            projectID: '6608dc5f14ac40171329936c',
+            versionID: 'production',
+            container: document.getElementById('voiceflow-chat-container'),
+            startMinimized: false
+        });
+        chat.on(Chat.Events.WIDGET_READY, () => {
+            console.log('Voiceflow chat widget is ready');
+        });
     </script>
 </body>
 </html>
