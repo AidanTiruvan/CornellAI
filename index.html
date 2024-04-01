@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Viewport meta tag -->
     <title>Cornell Programming Assistant</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <style>
@@ -62,6 +63,31 @@
             overflow-y: auto; /* Adds a vertical scrollbar if the content overflows */
             overflow-x: hidden; /* Hides the horizontal scrollbar */
             margin: 0 auto; /* Centers the container */
+        }
+        .chat-container {
+            /* Mobile styles for chat container */
+        }
+        .header, .footer {
+            /* Mobile styles for header and footer */
+        }
+
+        /* Responsive styles for tablets and up */
+        @media (min-width: 768px) {
+            .chat-container {
+                /* Adjusted styles for larger screens */
+            }
+            .header, .footer {
+                /* Adjusted styles for larger screens */
+            }
+            /* ... Other styles as needed ... */
+        }
+
+        /* Responsive styles for desktops and up */
+        @media (min-width: 1024px) {
+            .chat-container {
+                /* Adjusted styles for larger desktop screens */
+            }
+            /* ... Other styles as needed ... */
         }
     </style>
 </head>
